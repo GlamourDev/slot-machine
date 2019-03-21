@@ -1,0 +1,621 @@
+$defaultPadding: 0.9375rem;
+$smallFont: 0.85rem;
+$mediumFont: 1.3rem;
+$headingOne: 3.2rem;
+$borderRadius: 0.3em;
+
+$black: #1A1A1A;
+$white: rgb(240, 240, 240);
+$grey: #999999;
+$orange: #E08E26;
+$blue: #3E6A9B;
+
+// Media Query Ranges
+$small: "only screen and (min-width: 568px)";
+/* iPhone 5 */
+$medium-up: "only screen and (min-width: 568px)";
+/* iPad */
+$large-up: "only screen and (min-width: 736px)";
+/* Laptop */
+$xlarge-up: "only screen and (min-width: 1024px)";
+
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+@mixin line-height($heightValue: 12) {
+    line-height: $heightValue + px; //fallback for old browsers
+    line-height: (0.125 * $heightValue) + rem;
+}
+
+@mixin userSelect() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@font-face {
+    font-family: 'display_free_tfbregular';
+
+    src: url('../assets/display_free_tfb-webfont.eot');
+    src: url('../assets/display_free_tfb-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../assets/display_free_tfb-webfont.woff2') format('woff2'),
+        url('../assets/display_free_tfb-webfont.woff') format('woff'),
+        url('../assets/display_free_tfb-webfont.ttf') format('truetype'),
+        url('../assets/display_free_tfb-webfont.svg#display_free_tfbregular"') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+//@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,300,600);
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-align: center;
+    font-family: 'heading';
+}
+
+h2 {
+    @include font-size(40px);
+}
+
+body {
+    background: $black;
+
+    a {
+        color: $orange;
+        transition: all 500ms ease 0s;
+
+        &:hover {
+            color: $blue;
+        }
+    }
+}
+
+a:focus {
+    outline: none;
+    color: $orange;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+html {
+    @include font-size(6px);
+
+    @media #{$medium-up} {
+        @include font-size(10px);
+    }
+
+    @media #{$large-up} {
+        @include font-size(12px);
+    }
+
+    @media #{$xlarge-up} {
+        @include font-size(16px);
+    }
+}
+
+body {
+    background: $black;
+    font-family: 'Open Sans', sans-serif;
+    color: $white;
+    -webkit-overflow-scrolling: touch;
+    animation-iteration-count: 0;
+    @include userSelect();
+    @include font-size(16px);
+    @include line-height (13);
+
+    @media screen and (orientation: portrait) {
+        .orientation-warn {
+            display: block;
+        }
+    }
+}
+
+a {
+    color: #e1e1e1;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+
+    }
+}
+
+.orientation-warn {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $black;
+    z-index: 9999;
+
+    p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include font-size(80px);
+    }
+}
+
+#slot-machine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1400px;
+    max-width: 100%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+
+    &:-webkit-full-screen {
+        width: 100%;
+        height: 100%;
+        background: #1a1a1a;
+    }
+}
+
+.button {
+    width: 100%;
+    margin-bottom: 0;
+    overflow: hidden;
+    position: absolute;
+    background: none;
+    float: right;
+    right: -208px;
+    top: 6px;
+    -webkit-transform: translatez(0);
+    transform: translatez(0);
+    background: none;
+    padding: 22px;
+    color: $white !important;
+    transition: all 500ms ease 0s;
+    border-style: 1px outset rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+
+    &[type="button"]:hover {
+        cursor: pointer;
+    }
+
+    &:hover,
+    &:focus {
+        background: none;
+        border-style: inset;
+        text-decoration: none;
+    }
+}
+
+$bigPadding: 12em 0;
+
+.fullWidth {
+    width: 100%;
+    max-width: 100%;
+    float: left;
+}
+
+
+///////////////////////////////////////////
+// :: REELS //
+//
+
+//init setup
+// $depth: 248;
+// $deg: 15deg;
+// $faces: 24;
+// $faceWidth: 160;
+// $faceHeight: 66;
+
+.reel-wrap {
+    width: 50%;
+    height: 80%;
+    float: left;
+    margin: 0 auto;
+    position: relative;
+}
+
+.right-wrap {
+    width: 30%;
+    height: 80%;
+    float: right;
+    padding: 0 5%;
+    position: relative;
+    right: 15%;
+    background-color: #1a1a1a;
+    box-sizing: border-box;
+}
+
+$deg: 15deg;
+$faces: 24;
+
+$depth: 232;
+$faceWidth: 150;
+$faceHeight: 62;
+$bgPosition: 375px;
+
+// $depth: 290;
+// $faceWidth: 187.5;
+// $faceHeight: 78;
+// $bgPosition: 468.75px;
+
+#reels {
+    width: 170px;
+    height: 170px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-60%) scale(1);
+    perspective: 2000px;
+    filter: drop-shadow(0px 0px 10px rgba(black, 0.2));
+}
+
+.reel {
+    width: 100%;
+    height: $faceHeight + px;
+    position: absolute;
+    top: 50%;
+    margin: auto;
+    transform-style: preserve-3d;
+
+    div {
+        position: absolute;
+        height: $faceHeight + px;
+        width: 100%;
+        backface-visibility: hidden;
+        background-size: cover;
+        background-color: $white;
+
+        &:first-child {
+            display: none;
+        }
+    }
+}
+
+#reel1 {
+    transform: rotateX(-6deg);
+    right: 112%;
+
+    div {
+        background-image: url("../assets/reel.svg");
+    }
+}
+
+#reel2 {
+    transform: rotateX(-6deg);
+    left: 0;
+    right: 0;
+
+    div {
+        background-image: url("../assets/reel.svg");
+    }
+}
+
+#reel3 {
+    transform: rotateX(-6deg);
+    left: 112%;
+
+    div {
+        background-image: url("../assets/reel.svg");
+    }
+}
+
+//Reel structure
+@for $i from 1 through $faces {
+    .reel div:nth-child(#{$i+1}) {
+        background-position: 0 ($bgPosition + ($i * $faceHeight));
+        transform: rotateX($deg*($i + 7)) translateZ($depth + px);
+    }
+}
+
+
+///////////////////////////////////////////
+// :: CONTROLS //
+//
+
+.controls {
+    height: 20%;
+    width: 100%;
+    position: absolute;
+    z-index: 145;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-sizing: border-box;
+    top: 511px;
+    border-style: 8px outset rgba(255, 186, 91, 0.75);
+
+    @media #{$large-up} {
+        width: 90%;
+    }
+
+    .button {
+        background: none;
+        color: $black;
+        font-size: 9px;
+        border: 6px;
+        transform: rotateX(6deg);
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background: none;
+        }
+
+        @media #{$large-up} {
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        @media #{$xlarge-up} {
+            font-size: 16px;
+            padding: 18px 10px;
+        }
+    }
+}
+
+.controls-button {
+    width: 85%;
+    max-width: 1190px;
+    margin: 0 auto;
+
+    .spin,
+    .bank {
+        float: left;
+        width: auto;
+        margin-left: 2%;
+    }
+
+    .spin,
+    .bank {
+        width: 125.5%;
+    }
+
+    >div:first-child {
+        margin-left: 0;
+    }
+}
+
+#bank {
+    width: 200px;
+    text-align: center;
+    border-width: 0;
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    right: 160px;
+    top: 15px;
+    padding: 0px;
+    line-height: 1;
+    font-family: 'display_free_tfbregular';
+}
+
+input#bank {
+    padding-top: 5px;
+}
+
+@-webkit-keyframes buttonFlashAn {
+    from {
+        background: #ffb300;
+    }
+
+    to {
+        background: rgba(255, 179, 0, 0);
+    }
+}
+
+@keyframes buttonFlashAn {
+    from {
+        background: #ffb300;
+    }
+
+    to {
+        background: rgba(255, 179, 0, 0);
+    }
+}
+
+@-webkit-keyframes buttonFlashAnCoin {
+    from {
+        color: #ffb300;
+    }
+
+    to {
+        color: rgb(0, 0, 0);
+    }
+}
+
+@keyframes buttonFlashAnCoin {
+    from {
+        color: #ffb300;
+    }
+
+    to {
+        color: rgb(0, 0, 0);
+    }
+}
+
+.spinning {
+    #spin-button {
+        animation-iteration-count: 0;
+    }
+}
+
+.buttonFlash {
+    animation-iteration-count: infinite;
+    animation-name: buttonFlashAn;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-timing-function: steps(2);
+}
+
+#spin-button {
+    @extend .buttonFlash;
+}
+
+
+
+///////////////////////////////////////////
+// :: DISPLAY  //
+//
+
+.display {
+    padding: 20px;
+    font-family: 'display_free_tfbregular';
+
+    .bank p {
+        float: right;
+    }
+
+    p {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.red-line {
+    width: 571px;
+    height: 9px;
+    background: red;
+    z-index: 9999999999;
+    position: absolute;
+    left: -200px;
+    float: left;
+
+    &.top-hor {
+        top: -28px;
+    }
+
+    &.mid-hor {
+        top: 97px;
+    }
+
+    &.bottom-hor {
+        top: 227px;
+    }
+
+}
+
+.reel-frames {
+    background: linear-gradient(to bottom, #00000057 0%, #96181800, #000000c2 100%);
+    height: 370px;
+    width: 156px;
+    margin: 54px auto 0 auto;
+    padding: 16px;
+    display: inline-block;
+    border-radius: 5px;
+    position: absolute;
+    top: 121px;
+    z-index: 9;
+    border: solid #1a1a1a 14px;
+
+    &.left {
+        left: -47px;
+    }
+
+    &.center {
+        left: 171px;
+    }
+
+    &.right {
+        left: 389px;
+    }
+
+}
+
+#reels2 {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+}
+
+.reel-frames-wrapper {
+    position: absolute;
+    left: -193px;
+    top: -164%;
+}
+
+.pay-table {
+    width: 276px;
+    height: 269px;
+    padding: 10px 10px 10px 20px;
+    background: #ffffff;
+    box-shadow: 1px black;
+    border-radius: 15px;
+    margin: 5px 2px 0px 5px;
+    position: relative;
+    top: 29%;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.blink {
+    -webkit-animation-name: buttonFlashAnCoin;
+    animation-name: buttonFlashAnCoin;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+    -webkit-animation-timing-function: steps(2);
+    animation-timing-function: steps(2);
+}
+
+.pay-line {
+    color: #000;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 25px;
+}
+
+.coins {
+    display: block;
+    float: right;
+    font-weight: bold;
+}
+
+.pay-table-icon {
+    vertical-align: middle;
+    margin: 0 5px 0 5px;
+    width: 27px;
+    height: 24px;
+}
+
+.reel-frames-border {
+    border: solid 66px #252525;
+    background: transparent;
+    padding: 208px;
+    position: absolute;
+    left: -305px;
+    width: 233px;
+    height: 4px;
+    top: -162px;
+    z-index: 99;
+}

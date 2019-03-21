@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Derivco test task - slot machine</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <section id="slot-machine">
+
+        <div id="reels2" class="reel-wrap">
+
+            <div id="reels">
+                <div class="controls">
+                    <div class="controls-button">
+                        <div class="bank">
+                            <!-- <button class="button">Balance: <span id="bank">0</span></button> -->
+                            <input type="text" name="bank" maxlength="4" value="1000" min="1" max="5000" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); 
+                                this.value = this.value.replace(/(\..*)\./g, '$1'); 
+                                updateInput(this.value)" id="bank"></input>
+                        </div>
+                        <div class="spin">
+                            <button class="button start-random" type="button" id="spin-button">Spin</button>
+                        </div>
+                    </div>
+                </div>
+                <span id="line-top" class="red-line top-hor" style="display: block;"></span>
+                <span id="line-center" class="red-line mid-hor" style="display: block;"></span>
+                <span id="line-bottom" class="red-line bottom-hor" style="display: block;"></span>
+                <div class="reel-frames-border"></div>
+                <div class="reel-frames-wrapper">
+                    <div class="reel-frames left"></div>
+                    <div class="reel-frames center"></div>
+                    <div class="reel-frames right"></div>
+                </div>
+                <div id="reel1" class="reel">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="reel2" class="reel">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="reel3" class="reel">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-wrap">
+            <div class="pay-table">
+                <div id="payline-0" class="pay-line">3<img class="pay-table-icon" src="./assets/CHERRY.png">on top line<span id="coins-0" class="coins">2000</span></div>
+                <div id="payline-1" class="pay-line">3<img class="pay-table-icon" src="./assets/CHERRY.png">on center line
+                    <span id="coins-1" class="coins">1000</span></div>
+                <div id="payline-2" class="pay-line">3<img class="pay-table-icon" src="./assets/CHERRY.png">on bottom line
+                    <span id="coins-2" class="coins">4000</span></div>
+                <div id="payline-3" class="pay-line">3<img class="pay-table-icon" src="./assets/7.png">on any line<span id="coins-3" class="coins">150</span></div>
+                <div id="payline-4" class="pay-line">Any combination of<img class="pay-table-icon" src="./assets/CHERRY.png">and<img class="pay-table-icon" src="./assets/7.png">on any line<span id="coins-4" class="coins">75</span></div>
+                <div id="payline-5" class="pay-line">3<img class="pay-table-icon" src="./assets/3xBAR.png">on any line<span id="coins-5" class="coins">50</span></div>
+                <div id="payline-6" class="pay-line">3<img class="pay-table-icon" src="./assets/2xBAR.png">on any line<span id="coins-6" class="coins">20</span></div>
+                <div id="payline-7" class="pay-line">3<img class="pay-table-icon" src="./assets/BAR.png">on any line<span id="coins-7" class="coins">10</span></div>
+                <div id="payline-8" class="pay-line">Combination of any<img class="pay-table-icon" src="./assets/BAR.png">on any line<span id="coins-8" class="coins">5</span></div>
+            </div>
+            <div class="debug-area">
+                <span>Enable Debug Mode:</span>
+                <input type="checkbox" id="switchDebug">
+                <div class="debug-reel">
+                    <label>Left:</label>
+                    <select id="symbol-reel1" onchange="singleSelectChangeValueLeft()">
+                        <option value="3xBAR">3xBAR</option>
+                        <option value="BAR">BAR</option>
+                        <option value="2xBAR">2xBAR</option>
+                        <option value="7">7</option>
+                        <option value="CHERRY">CHERRY</option>
+                    </select>
+                </div>
+                <div class="debug-reel">
+                    <label>Center:</label>
+                    <select id="symbol-reel2" onchange="singleSelectChangeValueCenter()">
+                        <option value="3xBAR">3xBAR</option>
+                        <option value="BAR">BAR</option>
+                        <option value="2xBAR">2xBAR</option>
+                        <option value="7">7</option>
+                        <option value="CHERRY">CHERRY</option>
+                    </select>
+                </div>
+                <div class="debug-reel">
+                    <label>Right:</label>
+                    <select id="symbol-reel3" onchange="singleSelectChangeValueRight()">
+                        <option value="3xBAR">3xBAR</option>
+                        <option value="BAR">BAR</option>
+                        <option value="2xBAR">2xBAR</option>
+                        <option value="7">7</option>
+                        <option value="CHERRY">CHERRY</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="orientation-warn">
+        <p>Rotate me
+        </p>
+    </div>
+    <script src='js/velocity.min.js'></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
