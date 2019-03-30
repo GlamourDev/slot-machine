@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Derivco test task - slot machine</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -31,9 +32,9 @@
                         </div>
                     </div>
                 </div>
-                <span id="line-top" class="red-line top-hor" style="display: block;"></span>
-                <span id="line-center" class="red-line mid-hor" style="display: block;"></span>
-                <span id="line-bottom" class="red-line bottom-hor" style="display: block;"></span>
+                <span id="line-top" class="red-line top-hor" style="display: none;"></span>
+                <span id="line-center" class="red-line mid-hor" style="display: none;"></span>
+                <span id="line-bottom" class="red-line bottom-hor" style="display: none;"></span>
                 <div class="reel-frames-border"></div>
                 <div class="reel-frames-wrapper">
                     <div class="reel-frames left"></div>
@@ -124,7 +125,7 @@
             </div>
         </div>
 
-        <div class="right-wrap">
+        <div id="rightPanel" class="right-wrap">
             <div class="pay-table">
                 <div id="payline-0" class="pay-line">3<img class="pay-table-icon" src="./assets/CHERRY.png">on top line<span id="coins-0" class="coins">2000</span></div>
                 <div id="payline-1" class="pay-line">3<img class="pay-table-icon" src="./assets/CHERRY.png">on center line
@@ -140,17 +141,21 @@
             </div>
             <div class="debug-area">
                 <span>Enable Debug Mode:</span>
-                <input type="checkbox" id="switchDebug">
+                <span class="toggle">
+                    <input type="checkbox" class="check" id="switchDebug">
+                    <b class="b switch"></b>
+                    <b class="b track"></b>
+            </span>
                 <div class="debug-reel">
                     <label>Left:</label>
-                    <select id="symbol-reel1" onchange="singleSelectChangeValueLeft()">
+                    <select class="select-box" id="symbol-reel1" onchange="singleSelectChangeValueLeft()">
                         <option value="3xBAR">3xBAR</option>
                         <option value="BAR">BAR</option>
                         <option value="2xBAR">2xBAR</option>
                         <option value="7">7</option>
                         <option value="CHERRY">CHERRY</option>
                     </select>
-                    <select id="position-reel1" onchange="positionChangeValueLeft()">
+                    <select class="select-box" id="position-reel1" onchange="positionChangeValueLeft()">
                         <option value="top">top</option>
                         <option value="center">center</option>
                         <option value="bottom">bottom</option>
@@ -158,14 +163,14 @@
                 </div>
                 <div class="debug-reel">
                     <label>Center:</label>
-                    <select id="symbol-reel2" onchange="singleSelectChangeValueCenter()">
+                    <select class="select-box" id="symbol-reel2" onchange="singleSelectChangeValueCenter()">
                         <option value="3xBAR">3xBAR</option>
                         <option value="BAR">BAR</option>
                         <option value="2xBAR">2xBAR</option>
                         <option value="7">7</option>
                         <option value="CHERRY">CHERRY</option>
                     </select>
-                    <select id="position-reel2" onchange="positionChangeValueCenter()">
+                    <select class="select-box" id="position-reel2" onchange="positionChangeValueCenter()">
                         <option value="top">top</option>
                         <option value="center">center</option>
                         <option value="bottom">bottom</option>
@@ -173,14 +178,14 @@
                 </div>
                 <div class="debug-reel">
                     <label>Right:</label>
-                    <select id="symbol-reel3" onchange="singleSelectChangeValueRight()">
+                    <select class="select-box" id="symbol-reel3" onchange="singleSelectChangeValueRight()">
                         <option value="3xBAR">3xBAR</option>
                         <option value="BAR">BAR</option>
                         <option value="2xBAR">2xBAR</option>
                         <option value="7">7</option>
                         <option value="CHERRY">CHERRY</option>
                     </select>
-                    <select id="position-reel3" onchange="positionChangeValueRight()">
+                    <select class="select-box" id="position-reel3" onchange="positionChangeValueRight()">
                         <option value="top">top</option>
                         <option value="center">center</option>
                         <option value="bottom">bottom</option>

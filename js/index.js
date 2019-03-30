@@ -89,6 +89,7 @@ var firstGo = true,
     reel2 = document.getElementById("reel2"),
     reel3 = document.getElementById("reel3"),
     bank = document.getElementById("bank").value,
+    rightwrap,
     bank2 = "0",
     bank3,
     bank4,
@@ -622,10 +623,13 @@ function reelScale(w) {
 
     var reelScaleVal = w / 1400;
     var reels = document.getElementById("reels2");
+    var rightwrap = document.getElementById("rightPanel");
     if (reelScaleVal < 1) {
         reels.style.transform = "translateX(-50%) translateY(-60%) scale(" + reelScaleVal + ")";
+        rightwrap.style.transform = "translateX(-50%) translateY(-60%) scale(" + reelScaleVal + ")";
     } else {
         reels.style.transform = "translateX(-50%) translateY(-60%) scale(1)";
+        rightwrap.style.transform = "translateX(-50%) translateY(-60%) scale(1)";
     }
 }
 

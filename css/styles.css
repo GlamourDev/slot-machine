@@ -155,11 +155,24 @@ a {
   width: 30%;
   height: 80%;
   float: right;
-  padding: 0 5%;
-  position: relative;
-  right: 15%;
-  background-color: #1a1a1a;
+  margin-top: 34%;
+  padding: 0 7%;
   box-sizing: border-box; }
+
+@media only screen and (max-width: 736px) {
+  .debug-area {
+    position: absolute;
+    bottom: 0;
+    float: none;
+    left: 62px;
+    margin-top: -90px; }
+  .right-wrap {
+    width: 30%;
+    float: right;
+    margin-top: 23%;
+    top: 40%;
+    padding: 0 5%;
+    box-sizing: border-box; } }
 
 #reels {
   width: 170px;
@@ -366,7 +379,9 @@ a {
   font-family: 'display_free_tfbregular'; }
 
 input#bank {
-  padding-top: 5px; }
+  padding-top: 5px;
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.56); }
 
 @-webkit-keyframes buttonFlashAn {
   from {
@@ -391,6 +406,30 @@ input#bank {
     color: #ffb300; }
   to {
     color: black; } }
+
+@keyframes waggle {
+  0% {
+    transform: none; }
+  50% {
+    transform: rotateZ(-20deg) scale(1.2); }
+  60% {
+    transform: rotateZ(25deg) scale(1.2); }
+  67.5% {
+    transform: rotateZ(-15deg) scale(1.2); }
+  75% {
+    transform: rotateZ(15deg) scale(1.2); }
+  82.5% {
+    transform: rotateZ(-12deg) scale(1.2); }
+  85% {
+    transform: rotateZ(0) scale(1.2); }
+  100% {
+    transform: rotateZ(0) scale(1); } }
+
+@keyframes sheen {
+  0% {
+    transform: skewY(-45deg) translateX(0); }
+  100% {
+    transform: skewY(-45deg) translateX(12.5em); } }
 
 .spinning #spin-button {
   animation-iteration-count: 0; }
@@ -419,7 +458,10 @@ input#bank {
   z-index: 9999999999;
   position: absolute;
   left: -200px;
-  float: left; }
+  float: left;
+  border-radius: 49px;
+  box-shadow: 0px 0px 12px 1px #cfd6ddab, 0px 0px 20px 6px #ff0000;
+  animation: waggle .5s forwards; }
   .red-line.top-hor {
     top: -28px; }
   .red-line.mid-hor {
@@ -449,7 +491,8 @@ input#bank {
 #reels2 {
   position: absolute;
   top: 50%;
-  left: 25%; }
+  left: 25%;
+  margin-left: 7%; }
 
 .reel-frames-wrapper {
   position: absolute;
@@ -515,4 +558,103 @@ input#bank {
   bottom: 0;
   float: none;
   left: 62px;
-  top: 255px; }
+  top: 255px;
+  min-width: 202px; }
+
+div.debug-area > div:nth-child(3) {
+  margin-top: 17px; }
+
+.b {
+  display: block; }
+
+.toggle {
+  position: absolute;
+  left: 162px;
+  width: 48px;
+  height: 24px;
+  border-radius: 100px;
+  background-color: #ddd;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.05); }
+
+.check {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 6; }
+
+.check:checked ~ .track {
+  box-shadow: inset 0 0 0 20px #4bd863; }
+
+.check:checked ~ .switch {
+  right: 2px;
+  left: 22px;
+  transition: 0.35s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition-property: left, right;
+  transition-delay: .05s, 0s; }
+
+.switch {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  bottom: 2px;
+  right: 22px;
+  background-color: #fff;
+  border-radius: 36px;
+  z-index: 1;
+  transition: 0.35s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition-property: left, right;
+  transition-delay: 0s, .05s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+
+.track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.35s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05);
+  border-radius: 40px; }
+
+.select-box {
+  padding: 3px;
+  outline: none;
+  border: none;
+  background: #33333369;
+  color: #ffffff; }
+
+select:disabled {
+  color: #4e4e4e; }
+
+.button {
+  padding: 0.75em 2em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 24px;
+  display: inline-block;
+  border-radius: 0.3em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden; }
+  .button:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none; }
+  .button:hover {
+    color: #fff; }
+    .button:hover:before {
+      transform: skewX(-45deg) translateX(13.5em);
+      transition: all 0.5s ease-in-out; }
