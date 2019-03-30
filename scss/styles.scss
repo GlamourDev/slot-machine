@@ -299,7 +299,7 @@ $bgPosition: 375px;
     right: 112%;
 
     div {
-        background-image: url("../assets/reel.svg");
+        background-image: url("../assets/reel1.svg");
     }
 }
 
@@ -309,7 +309,7 @@ $bgPosition: 375px;
     right: 0;
 
     div {
-        background-image: url("../assets/reel.svg");
+        background-image: url("../assets/reel2.svg");
     }
 }
 
@@ -318,7 +318,7 @@ $bgPosition: 375px;
     left: 112%;
 
     div {
-        background-image: url("../assets/reel.svg");
+        background-image: url("../assets/reel3.svg");
     }
 }
 
@@ -619,3 +619,11 @@ input#bank {
     top: -162px;
     z-index: 99;
 }
+
+.debug-area {
+    position: relative;
+    bottom: 0;
+    float: none;
+    left: 62px;
+    top: 255px;
+  }

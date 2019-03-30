@@ -117,40 +117,39 @@ function initializeReels() {
         330: "bar",
         360: "threebar"
     };
+    
     reel2Map = {
-        m30: "bar",
-        0: "threebar",
-        30: "bar",
-        60: "twobar",
-        90: "seven",
-        120: "cherry",
-        150: "threebar",
-        180: "bar",
-        210: "twobar",
-        240: "seven",
-        270: "cherry",
-        300: "threebar",
-        330: "bar",
-        360: "threebar"
+        m30: "seven",
+        0: "twobar",
+        30: "seven",
+        60: "cherry",
+        90: "threebar",
+        120: "bar",
+        150: "twobar",
+        180: "seven",
+        210: "cherry",
+        240: "threebar",
+        270: "bar",
+        300: "twobar",
+        330: "seven",
+        360: "twobar"
     };
 
-    /* threebar = 3 BAR */
-
     reel3Map = {
-        m30: "bar",
-        0: "threebar",
-        30: "bar",
-        60: "twobar",
-        90: "seven",
-        120: "cherry",
-        150: "threebar",
-        180: "bar",
-        210: "twobar",
-        240: "seven",
-        270: "cherry",
-        300: "threebar",
-        330: "bar",
-        360: "threebar"
+        m30: "threebar",
+        0: "cherry",
+        30: "threebar",
+        60: "bar",
+        90: "twobar",
+        120: "seven",
+        150: "cherry",
+        180: "threebar",
+        210: "bar",
+        240: "twobar",
+        270: "seven",
+        300: "cherry",
+        330: "threebar",
+        360: "cherry"
     };
 
     spinReels();
