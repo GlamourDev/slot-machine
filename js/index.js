@@ -44,6 +44,7 @@ var firstGo = true,
     i,
     coin,
     selValue,
+    posValue,
 
     laststopLocations1 = -6,
     laststopLocations2 = -6,
@@ -117,7 +118,7 @@ function initializeReels() {
         330: "bar",
         360: "threebar"
     };
-    
+
     reel2Map = {
         m30: "seven",
         0: "twobar",
@@ -706,9 +707,20 @@ function singleSelectChangeValueLeft(selValue) {
     //var selValue = document.getElementById("singleSelectDD").value;
     var selObj = document.getElementById("symbol-reel1");
     var selValue = selObj.options[selObj.selectedIndex].value;
+    var posObj = document.getElementById("position-reel1");
+    var posValue = posObj.options[posObj.selectedIndex].value;
     //Setting Value
     return selValue;
 }
+
+function positionChangeValueLeft(posValue) {
+    //Getting Value
+    var posObj = document.getElementById("position-reel1");
+    var posValue = posObj.options[posObj.selectedIndex].value;
+    //Setting Value
+    return posValue;
+}
+
 
 function singleSelectChangeValueCenter(selValue) {
     //Getting Value
@@ -717,6 +729,14 @@ function singleSelectChangeValueCenter(selValue) {
     var selValue = selObj.options[selObj.selectedIndex].value;
     //Setting Value
     return selValue;
+}
+
+function positionChangeValueCenter(posValue) {
+    //Getting Value
+    var posObj = document.getElementById("position-reel2");
+    var posValue = posObj.options[posObj.selectedIndex].value;
+    //Setting Value
+    return posValue;
 }
 
 function singleSelectChangeValueRight(selValue) {
@@ -728,45 +748,143 @@ function singleSelectChangeValueRight(selValue) {
     return selValue;
 }
 
+function positionChangeValueRight(posValue) {
+    //Getting Value
+    var posObj = document.getElementById("position-reel3");
+    var posValue = posObj.options[posObj.selectedIndex].value;
+    //Setting Value
+    return posValue;
+}
+
 function getFixedLeft() {
     if (singleSelectChangeValueLeft(selValue) === "CHERRY") {
-        addFixedLeft(9);
+        if (positionChangeValueLeft(posValue) === "top") {
+            addFixedLeft(10);
+        } else if (positionChangeValueLeft(posValue) === "center") {
+            addFixedLeft(9);
+        } else if (positionChangeValueLeft(posValue) === "bottom") {
+            addFixedLeft(8);
+        }
     } else if (singleSelectChangeValueLeft(selValue) === "3xBAR") {
-        addFixedLeft(10);
+        if (positionChangeValueLeft(posValue) === "top") {
+            addFixedLeft(11);
+        } else if (positionChangeValueLeft(posValue) === "center") {
+            addFixedLeft(10);
+        } else if (positionChangeValueLeft(posValue) === "bottom") {
+            addFixedLeft(9);
+        }
     } else if (singleSelectChangeValueLeft(selValue) === "7") {
-        addFixedLeft(8);
+        if (positionChangeValueLeft(posValue) === "top") {
+            addFixedLeft(9);
+        } else if (positionChangeValueLeft(posValue) === "center") {
+            addFixedLeft(8);
+        } else if (positionChangeValueLeft(posValue) === "bottom") {
+            addFixedLeft(7);
+        }
     } else if (singleSelectChangeValueLeft(selValue) === "2xBAR") {
-        addFixedLeft(7);
+        if (positionChangeValueLeft(posValue) === "top") {
+            addFixedLeft(8);
+        } else if (positionChangeValueLeft(posValue) === "center") {
+            addFixedLeft(7);
+        } else if (positionChangeValueLeft(posValue) === "bottom") {
+            addFixedLeft(6);
+        }
     } else if (singleSelectChangeValueLeft(selValue) === "BAR") {
-        addFixedLeft(6);
+        if (positionChangeValueLeft(posValue) === "top") {
+            addFixedLeft(7);
+        } else if (positionChangeValueLeft(posValue) === "center") {
+            addFixedLeft(6);
+        } else if (positionChangeValueLeft(posValue) === "bottom") {
+            addFixedLeft(5);
+        }
     }
 }
 
 function getFixedCenter() {
     if (singleSelectChangeValueCenter(selValue) === "CHERRY") {
-        addFixedCenter(9);
+        if (positionChangeValueCenter(posValue) === "top") {
+            addFixedCenter(8);
+        } else if (positionChangeValueCenter(posValue) === "center") {
+            addFixedCenter(7);
+        } else if (positionChangeValueCenter(posValue) === "bottom") {
+            addFixedCenter(6);
+        }
     } else if (singleSelectChangeValueCenter(selValue) === "3xBAR") {
-        addFixedCenter(10);
+        if (positionChangeValueCenter(posValue) === "top") {
+            addFixedCenter(9);
+        } else if (positionChangeValueCenter(posValue) === "center") {
+            addFixedCenter(8);
+        } else if (positionChangeValueCenter(posValue) === "bottom") {
+            addFixedCenter(7);
+        }
     } else if (singleSelectChangeValueCenter(selValue) === "7") {
-        addFixedCenter(8);
+        if (positionChangeValueCenter(posValue) === "top") {
+            addFixedCenter(7);
+        } else if (positionChangeValueCenter(posValue) === "center") {
+            addFixedCenter(6);
+        } else if (positionChangeValueCenter(posValue) === "bottom") {
+            addFixedCenter(5);
+        }
     } else if (singleSelectChangeValueCenter(selValue) === "2xBAR") {
-        addFixedCenter(7);
+        if (positionChangeValueCenter(posValue) === "top") {
+            addFixedCenter(6);
+        } else if (positionChangeValueCenter(posValue) === "center") {
+            addFixedCenter(5);
+        } else if (positionChangeValueCenter(posValue) === "bottom") {
+            addFixedCenter(4);
+        }
     } else if (singleSelectChangeValueCenter(selValue) === "BAR") {
-        addFixedCenter(6);
+        if (positionChangeValueCenter(posValue) === "top") {
+            addFixedCenter(5);
+        } else if (positionChangeValueCenter(posValue) === "center") {
+            addFixedCenter(4);
+        } else if (positionChangeValueCenter(posValue) === "bottom") {
+            addFixedCenter(3);
+        }
     }
 }
 
 function getFixedRight() {
     if (singleSelectChangeValueRight(selValue) === "CHERRY") {
-        addFixedRight(9);
+        if (positionChangeValueRight(posValue) === "top") {
+            addFixedRight(6);
+        } else if (positionChangeValueRight(posValue) === "center") {
+            addFixedRight(5);
+        } else if (positionChangeValueRight(posValue) === "bottom") {
+            addFixedRight(4);
+        }
     } else if (singleSelectChangeValueRight(selValue) === "3xBAR") {
-        addFixedRight(10);
+        if (positionChangeValueRight(posValue) === "top") {
+            addFixedRight(7);
+        } else if (positionChangeValueRight(posValue) === "center") {
+            addFixedRight(6);
+        } else if (positionChangeValueRight(posValue) === "bottom") {
+            addFixedRight(5);
+        }
     } else if (singleSelectChangeValueRight(selValue) === "7") {
-        addFixedRight(8);
+        if (positionChangeValueRight(posValue) === "top") {
+            addFixedRight(5);
+        } else if (positionChangeValueRight(posValue) === "center") {
+            addFixedRight(4);
+        } else if (positionChangeValueRight(posValue) === "bottom") {
+            addFixedRight(3);
+        }
     } else if (singleSelectChangeValueRight(selValue) === "2xBAR") {
-        addFixedRight(7);
+        if (positionChangeValueRight(posValue) === "top") {
+            addFixedRight(4);
+        } else if (positionChangeValueRight(posValue) === "center") {
+            addFixedRight(3);
+        } else if (positionChangeValueRight(posValue) === "bottom") {
+            addFixedRight(2);
+        }
     } else if (singleSelectChangeValueRight(selValue) === "BAR") {
-        addFixedRight(6);
+        if (positionChangeValueRight(posValue) === "top") {
+            addFixedRight(3);
+        } else if (positionChangeValueRight(posValue) === "center") {
+            addFixedRight(2);
+        } else if (positionChangeValueRight(posValue) === "bottom") {
+            addFixedRight(1);
+        }
     }
 }
 
@@ -781,11 +899,17 @@ var checkbox = document.querySelector("#switchDebug");
 var input = document.querySelector("#symbol-reel1");
 var input2 = document.querySelector("#symbol-reel2");
 var input3 = document.querySelector("#symbol-reel3");
+var position = document.querySelector("#position-reel1");
+var position2 = document.querySelector("#position-reel2");
+var position3 = document.querySelector("#position-reel3");
 
 var toggleInput = function (e) {
     input.disabled = !e.target.checked;
     input2.disabled = !e.target.checked;
     input3.disabled = !e.target.checked;
+    position.disabled = !e.target.checked;
+    position2.disabled = !e.target.checked;
+    position3.disabled = !e.target.checked;
     debug = e.target.checked;
 };
 
