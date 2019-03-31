@@ -152,26 +152,24 @@ a {
   position: relative; }
 
 .right-wrap {
-  width: 30%;
-  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  top: 35%;
+  position: relative;
   float: right;
-  margin-top: 34%;
-  padding: 0 7%;
   box-sizing: border-box; }
 
-@media only screen and (max-width: 736px) {
+@media only screen and (max-width: 1280px) {
   .debug-area {
     position: absolute;
     bottom: 0;
-    float: none;
-    left: 62px;
-    margin-top: -90px; }
+    float: none; }
   .right-wrap {
-    width: 30%;
-    float: right;
-    margin-top: 23%;
     top: 40%;
-    padding: 0 5%;
+    padding-right: 2%;
+    margin-right: -15%;
+    width: 36%;
     box-sizing: border-box; } }
 
 #reels {
@@ -554,12 +552,13 @@ input#bank {
   z-index: 99; }
 
 .debug-area {
-  position: relative;
-  bottom: 0;
-  float: none;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
   left: 62px;
-  top: 255px;
-  min-width: 202px; }
+  top: 353px;
+  margin: 0 auto;
+  width: 100%; }
 
 div.debug-area > div:nth-child(3) {
   margin-top: 17px; }

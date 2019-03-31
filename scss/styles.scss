@@ -16,7 +16,7 @@ $small: "only screen and (min-width: 568px)";
 $medium-up: "only screen and (min-width: 568px)";
 /* iPad */
 $large-up: "only screen and (min-width: 736px)";
-$large-down: "only screen and (max-width: 736px)";
+$large-down: "only screen and (max-width: 1280px)";
 /* Laptop */
 $xlarge-up: "only screen and (min-width: 1024px)";
 
@@ -239,11 +239,12 @@ $bigPadding: 12em 0;
 }
 
 .right-wrap {
-    width: 30%;
-    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    top: 35%;
+    position: relative;
     float: right;
-    margin-top: 34%;
-    padding: 0 7%;
     box-sizing: border-box;
 }
 
@@ -252,16 +253,13 @@ $bigPadding: 12em 0;
         position: absolute;
         bottom: 0;
         float: none;
-        left: 62px;
-        margin-top: -90px;
     }
 
     .right-wrap {
-        width: 30%;
-        float: right;
-        margin-top: 23%;
         top: 40%;
-        padding: 0 5%;
+        padding-right: 2%;
+        margin-right: -15%;
+        width: 36%;
         box-sizing: border-box;
     }
 }
@@ -689,12 +687,13 @@ input#bank {
 }
 
 .debug-area {
-    position: relative;
-    bottom: 0;
-    float: none;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
     left: 62px;
-    top: 255px;
-    min-width: 202px;
+    top: 353px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 
