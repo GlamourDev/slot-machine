@@ -10,6 +10,7 @@ var firstGo = true,
     debug = false,
 
     reelNum = 0,
+    balanceState = 0,
     bodyClass,
     els = document.getElementsByClassName("blink"),
 
@@ -23,8 +24,9 @@ var firstGo = true,
     coins7 = document.getElementById("coins-7"),
     coins8 = document.getElementById("coins-8"),
 
-    winnings = parseFloat("0"),
+    winnings = 0,
     winningsString,
+    currentCredit,
 
     reel1Map = [],
     reel2Map = [],
@@ -43,6 +45,7 @@ var firstGo = true,
     str,
     i,
     coin,
+    elements,
     selValue,
     posValue,
 
@@ -83,6 +86,7 @@ var firstGo = true,
     thisReel,
     thisReelEnd,
     wobbleRotation,
+    reelWobble,
 
     reels = document.getElementsByClassName("reel"),
     reel1 = document.getElementById("reel1"),
@@ -90,9 +94,10 @@ var firstGo = true,
     reel3 = document.getElementById("reel3"),
     bank = document.getElementById("bank").value,
     rightwrap,
-    bank2 = "0",
+    bank2 = 0,
     bank3,
     bank4,
+    bank5,
 
     // Equal stop locations for every reel
     stopLocations = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
@@ -173,7 +178,7 @@ function initializeReels() {
             eatCoin();
         } else if (spinning === false) {
             console.log("Continuing normally");
-            spinReels();
+            initializeReels();
         }
         if (debug === true) {
             console.log("Debugging true");
@@ -341,33 +346,28 @@ function addLineBottom() {
         x.style.display = "none";
     }
 }
+// Getting current balance
+setInterval(function () {
+    currentCredit = +(document.getElementById("bank").value);
+    console.log("Current balance: " + currentCredit);
+}, 1000);
 
 function eatCoin() {
-    bank3 = document.getElementById("bank").value;
-    --bank3;
-    --bank;
-    --winningsString;
-    document.getElementById("bank").value = bank3;
+    winnings = 0;
+    --currentCredit;
+    document.getElementById("bank").value = currentCredit;
 }
 
 function updateInput() {
     bank4 = document.getElementById("bank").value;
-    /*     bank2.value = (/^[1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-4][0-9]{3}|5000/ig); */
     if (bank4 >= 5000) {
+        balanceState = 2;
         bank4 = "5000";
-        console.log(bank4);
         document.getElementById("bank").value = bank4;
+        console.log("Higher amount than 5K was chosen");
     } else {
-        bank = "";
-        winnings = "";
-        bank2 = "";
-        bank4 = "";
-        ++bank;
-        bank2 = document.getElementById("bank").value;
-        /* bank3 = parseFloat(bank2) + parseFloat(bank); */
-        document.getElementById("bank").value = bank2;
-        console.log("input changed");
-        winnings = parseFloat(winnings + "0");
+        balanceState = 1;
+        console.log("Lower amount than 5K was chosen");
     }
 }
 
@@ -592,21 +592,29 @@ function calculateScores() {
 
     }
 
-    if (bank4 != undefined) {
-        console.log(bank, bank2, bank3, bank4);
-        winningsString = winnings.toString();
-        bank4 = ((parseFloat(bank2) + parseFloat(winningsString)) + (parseFloat(bank))).toString();
-        --bank4;
-        console.log(bank4);
-        document.getElementById("bank").value = bank4;
-        winningsString = "";
-    } else {
-        winningsString = winnings.toString();
-        bank3 = ((parseFloat(bank2) + parseFloat(winningsString)) + (parseFloat(bank))).toString();
-        /* --bank3; */
-        document.getElementById("bank").value = bank3;
-        winningsString = "";
-        /* updateInput(); */
+    // bank4 is a value which was inserted after entering an integer bigger than 5K, bank3 is an automatic one, bank2 is entered value less than 5K
+    // and bank is a winning string
+    // balanceState 0 normal, 1 when added value less than 5K, 3 when added over 5K
+    if (winnings > 0) {
+        if (balanceState === 2) {
+            winningsString = winnings.toString();
+            bank4 = ((parseFloat(currentCredit) + parseFloat(winningsString))).toString();
+            console.log(winnings, bank, bank2, bank3, bank4, bank5);
+            document.getElementById("bank").value = bank4;
+        } else if (balanceState === 1) {
+            winningsString = winnings.toString();
+            bank5 = ((parseFloat(currentCredit) + parseFloat(winningsString))).toString();
+            console.log(bank5 + " sisestatud väärtus bank5");
+            document.getElementById("bank").value = bank5;
+        }
+        // Random default mode
+        else {
+            console.log(winnings, bank, bank2, bank3, bank4, bank5);
+            winningsString = winnings.toString();
+            bank3 = ((parseFloat(currentCredit) + parseFloat(winningsString))).toString();
+            document.getElementById("bank").value = bank3;
+            winnings = 0;
+        }
     }
 
 }
@@ -631,6 +639,16 @@ function reelScale(w) {
         reels.style.transform = "translateX(-50%) translateY(-60%) scale(1)";
         rightwrap.style.transform = "translateX(-50%) translateY(-60%) scale(1)";
     }
+}
+
+function reelWobble(elements, thisReelEnd) {
+    wobbleRotation = thisReelEnd - 6;
+    Velocity(elements, {
+        rotateX: [thisReelEnd, wobbleRotation],
+    }, {
+        easing: [800, 10],
+        duration: 600
+    });
 }
 
 
@@ -681,6 +699,7 @@ function addFixedCenter(num) {
             duration: 2500,
             complete: function (elements) {
                 thisReelEnd = stopLocations2;
+                reelWobble(elements, thisReelEnd);
             }
         });
         laststopLocations2 = stopLocations2 - defaultSpin + 6;
@@ -699,6 +718,7 @@ function addFixedRight(num) {
             duration: 3000,
             complete: function (elements) {
                 thisReelEnd = stopLocations3;
+                reelWobble(elements, thisReelEnd);
             }
         });
         laststopLocations3 = stopLocations3 - defaultSpin + 6;
@@ -711,8 +731,6 @@ function singleSelectChangeValueLeft(selValue) {
     //var selValue = document.getElementById("singleSelectDD").value;
     var selObj = document.getElementById("symbol-reel1");
     var selValue = selObj.options[selObj.selectedIndex].value;
-    var posObj = document.getElementById("position-reel1");
-    var posValue = posObj.options[posObj.selectedIndex].value;
     //Setting Value
     return selValue;
 }
@@ -893,7 +911,7 @@ function getFixedRight() {
 }
 
 function setFixed() {
-    /*             initializeReels(); */
+    /* initializeReels(); */
     getFixedLeft();
     getFixedCenter();
     getFixedRight();
